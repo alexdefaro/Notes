@@ -2,7 +2,29 @@
 	URL: (https://notes-six-jade.vercel.app/)
 
 ------------------------------------------------------------------------------------
+- React Hook Form 
+	https://react-hook-form.com/
+
+	1) Installing
+		npm install react-hook-form
+
+------------------------------------------------------------------------------------
+- UUID
+	https://www.npmjs.com/package/uuid		
+
+	1) Installing
+		npm install uuid
+
+------------------------------------------------------------------------------------
+- Cookies (nookies)
+	https://www.npmjs.com/package/nookies
+
+	1) Installing
+		npm install nookies
+
+------------------------------------------------------------------------------------
 - Setting
+
 	1) Create the repository in Github
 		- Don't add any files in the created repository
 	2) Create the application 
