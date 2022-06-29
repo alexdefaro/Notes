@@ -1,5 +1,5 @@
 # Project Information 
-	URL: (https://notes-six-jade.vercel.app/)
+	URL: https://notes-six-jade.vercel.app/
 
 ------------------------------------------------------------------------------------
 - React Hook Form 
@@ -10,7 +10,7 @@
 
 ------------------------------------------------------------------------------------
 - UUID
-	https://www.npmjs.com/package/uuid		
+	https://www.npmjs.com/package/uuid
 
 	1) Installing
 		npm install uuid
@@ -21,6 +21,14 @@
 
 	1) Installing
 		npm install nookies
+
+------------------------------------------------------------------------------------
+- Axios 
+	https://axios-http.com/docs/intro
+
+	1) Installing
+		npm install axios
+
 
 ------------------------------------------------------------------------------------
 - Setting
@@ -78,5 +86,6 @@
 
 
 ------------------------------------------------------------------------------------------
-- Vercel (https://vercel.com/)
+- Vercel 
+	https://vercel.com/
 

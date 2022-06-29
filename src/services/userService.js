@@ -1,13 +1,14 @@
-import React from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 function userService() {
     async function authenticateUser(email, password) {
         const authenticationData = {
-            jwtToken: "UAHSDASDHAIHSDAUIHDSAUDHIHJANSDKJABSD",
+            jwtToken: uuidv4(),
             userInformation: {
+                id: 1,
                 name: "Alexandre Ramos",
                 email: "alexdefaro@gmail.com",
-                avatar_url: "",
+                avatar_url: "https://github.com/alexdefaro.png",
                 isAuthenticated: false
             }
         };
