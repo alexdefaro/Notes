@@ -1,4 +1,3 @@
-import Router from "next/router";
 import { setCookie } from 'nookies'
 import { createContext, useContext, useState } from 'react'
 
