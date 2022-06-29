@@ -24,12 +24,11 @@ export default function AuthenticationContextProvider({ children }) {
 
         if (sessionData) {
             const parsedSessionData = JSON.parse(sessionData);
-
             setUserInformation({
                 id: parsedSessionData.userInformation.id,
                 name: parsedSessionData.userInformation.name,
                 email: parsedSessionData.userInformation.email,
-                avatar_url: parsedSessionData.userInformation.avatar_url,
+                avatarURL: parsedSessionData.userInformation.avatarURL,
                 isAuthenticated: parsedSessionData.userInformation.isAuthenticated
             });
         }
@@ -37,6 +36,10 @@ export default function AuthenticationContextProvider({ children }) {
 
     async function handleSignIn(email, password) {
         const authenticationData = await authenticateUser(email, password);
+
+        if (!authenticationData) {
+            return false; 
+        }
 
         setCookie(undefined, "notes-token", JSON.stringify(authenticationData), {
             maxAge: 24 * 60 * 60 // 1 Day
@@ -49,7 +52,7 @@ export default function AuthenticationContextProvider({ children }) {
     }
 
     async function handleSignOut() {
-        destroyCookie(undefined, "notes-token");
+        destroyCookie(undefined, "notes-token"); 
 
         setUserInformation({});
         updateAxiosAuthorisationToken("");

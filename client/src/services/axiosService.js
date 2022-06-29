@@ -11,5 +11,5 @@ const { "notes-token": token } = parseCookies();
 
 if (token) {
     const parsedToken = JSON.parse(token);
-    axiosService.defaults.headers.common['Authorization'] = `Bearer ${parsedToken.jwtToken}`;
+     axiosService.defaults.headers.common['Authorization'] = parsedToken.jwtToken ?? `Bearer ${parsedToken.jwtToken}`;
 }
