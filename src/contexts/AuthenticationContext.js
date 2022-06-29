@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { setCookie, parseCookies } from 'nookies'
+import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { axiosService } from '../services/axiosService';
 
 import userService from '../services/userService';
@@ -20,11 +20,11 @@ export default function AuthenticationContextProvider({ children }) {
     }
 
     useEffect(() => {
-        const { "notes-token" : sessionData } = parseCookies();
+        const { "notes-token": sessionData } = parseCookies();
 
         if (sessionData) {
             const parsedSessionData = JSON.parse(sessionData);
-            
+
             setUserInformation({
                 id: parsedSessionData.userInformation.id,
                 name: parsedSessionData.userInformation.name,
@@ -48,9 +48,19 @@ export default function AuthenticationContextProvider({ children }) {
         return authenticationData.userInformation.isAuthenticated;
     }
 
+    async function handleSignOut() {
+        destroyCookie(undefined, "notes-token");
+
+        setUserInformation({});
+        updateAxiosAuthorisationToken("");
+
+        return true;
+    }
+
     const contextData = {
         userInformation,
-        handleSignIn
+        handleSignIn,
+        handleSignOut
     }
 
     return (
