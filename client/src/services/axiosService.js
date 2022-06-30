@@ -1,9 +1,8 @@
 import axios from "axios";
 import { parseCookies } from 'nookies'
 
-// const API_URL = "http://localhost:3001"
 const API_URL = process.env.NEXT_PUBLIC_SERVER_API_URL;
-console.log( "API_URL", process.env.NEXT_PUBLIC_SERVER_API_URL);
+console.log( "API_URL", API_URL);
 
 export const axiosService = axios.create({
     baseURL: API_URL 

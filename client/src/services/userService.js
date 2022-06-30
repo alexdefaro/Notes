@@ -3,14 +3,12 @@ import { axiosService } from './axiosService';
 
 function userService() {
 
-    async function getUserInformation(email, password) {
-        // return {
-        //     id: 1,
-        //     name: "Alexandre Ramos",
-        //     email: email,
-        //     avatarURL: "https://github.com/alexdefaro.png"
-        // }
+    function isEmptyObject(obj) {
+        const isObjectEmpty = (!obj && obj == 'null' && obj == 'undefined' || Object.keys(obj).length === 0);
+        return isObjectEmpty;
+    }
 
+    async function getUserInformation(email, password) {
         try {
             const response = await axiosService.post("/login", { email, password });
 
@@ -28,7 +26,7 @@ function userService() {
     async function authenticateUser(email, password) {
         const userInformation = await getUserInformation(email, password);
 
-        if (!userInformation) {
+        if (isEmptyObject(userInformation)) {
             return null;
         }
 
