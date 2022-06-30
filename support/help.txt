@@ -29,6 +29,9 @@
 	1) Installing
 		npm install uuid
 
+		const uuid = require('uuid');
+
+
 ------------------------------------------------------------------------------------
 - Cookies (nookies)
 	https://www.npmjs.com/package/nookies

@@ -1,10 +1,11 @@
 import Router from "next/router";
- 
-import { useContext, useEffect } from "react";
+
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthenticationContext } from "../contexts/AuthenticationContext";
 
 function Login() {
+    const [loginFailed, setLoginFailed] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { handleSignIn } = useAuthenticationContext();
 
@@ -16,8 +17,13 @@ function Login() {
         const successSignIn = await handleSignIn(data.email, data.password)
 
         if (successSignIn === true) {
-            Router.push("/")
+            setLoginFailed(false);
+            
+            Router.push("/");
+            return;
         }
+
+        setLoginFailed(true);
     }
 
     return (
@@ -61,6 +67,9 @@ function Login() {
                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Sign in
                         </button>
+                    </div>
+                    <div className={`p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 ${!loginFailed ? "invisible" : "visible "   }`} role="alert">
+                        <span className="font-medium">Sign in failed!</span> Please review your credentials.
                     </div>
                 </form>
             </div>

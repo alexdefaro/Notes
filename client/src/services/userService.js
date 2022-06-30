@@ -1,46 +1,42 @@
-import { v4 as uuidv4 } from 'uuid';
 import { axiosService } from './axiosService';
 
 function userService() {
 
     function isEmptyObject(obj) {
-        const isObjectEmpty = (!obj && obj == 'null' && obj == 'undefined' || Object.keys(obj).length === 0);
+        const isObjectEmpty = obj == null || !obj || obj == 'null' || obj == 'undefined' || Object.keys(obj).length === 0;
         return isObjectEmpty;
     }
 
-    async function getUserInformation(email, password) {
+    async function getUserAuthenticationData(email, password) {
         try {
             const response = await axiosService.post("/login", { email, password });
 
-            return {
-                id: response.data.id,
-                name: response.data.name,
-                email: response.data.email,
-                avatarURL: response.data.avatarURL
+            const authenticationData = {
+                jwtToken: response.data.jwtToken,
+                userInformation: {
+                    id: response.data.userInformation.id,
+                    name: response.data.userInformation.name,
+                    email: response.data.userInformation.email,
+                    avatarURL: response.data.userInformation.avatarURL,
+                    isAuthenticated: false
+                }
             }
-        } catch (error) {
+
+            return authenticationData;
+        } 
+        catch (error) {
             return null;
         }
     }
 
     async function authenticateUser(email, password) {
-        const userInformation = await getUserInformation(email, password);
+        const authenticationData = await getUserAuthenticationData(email, password);
 
-        if (isEmptyObject(userInformation)) {
+        if (isEmptyObject(authenticationData)) {
             return null;
         }
 
-        const authenticationData = {
-            jwtToken: uuidv4(),
-            userInformation: {
-                id: userInformation.id,
-                name: userInformation.name,
-                email: userInformation.email,
-                avatarURL: userInformation.avatarURL,
-                isAuthenticated: true
-            }
-        };
-
+        authenticationData.userInformation.isAuthenticated = true;
         return authenticationData;
     }
 

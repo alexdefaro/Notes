@@ -16,7 +16,7 @@ function Layout({ children }) {
     return (
         <header className="bg-white shadow">
             <Disclosure as="nav" className="bg-gray-800">
-                <div className="flex items-center justify-start h-16 md:ml-6">
+                <div className="flex items-center justify-start h-16 ml-6">
                     <Menu as="div" className="relative">
                         <Menu.Button className="pt-1 max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <img className="h-8 w-8 rounded-full" src={userInformation.avatarURL} alt="" />
