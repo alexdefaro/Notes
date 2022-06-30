@@ -9,7 +9,7 @@ function Layout({ children }) {
     const { userInformation, handleSignOut } = useAuthenticationContext();
 
     function handleLogout() {
-        handleSignOut();
+        handleSignOut(); 
         Router.push("/login");
     }
 
@@ -36,7 +36,6 @@ function Layout({ children }) {
                 {children}
             </div>
         </header>
-
     )
 }
 

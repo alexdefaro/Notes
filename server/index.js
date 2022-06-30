@@ -13,7 +13,7 @@ app.listen(port, () => {
 
 // Endpoints 
 app.get('/', (request, response) => {
-    response.send('Hello World!');
+    response.send("Listening...");
 })
 
 app.post('/login', (request, response) => {
