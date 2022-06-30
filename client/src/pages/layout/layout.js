@@ -28,7 +28,7 @@ function Layout({ children }) {
                         </Menu.Items>
                     </Menu>
                     <div className="px-3">
-                        <h1 className="text-3xl font-bold text-white">Welcome, {userInformation.name}!</h1>
+                        <h1 className="text-3xl font-bold text-white">Welcome {userInformation.name}!</h1>
                     </div>
                 </div>
             </Disclosure>

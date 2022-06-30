@@ -3,43 +3,45 @@ import { axiosService } from './axiosService';
 
 function userService() {
 
-    async function getGitHubUserInformation(username) {
-        // alvarolopes
+    async function getUserInformation(email, password) {
+        // return {
+        //     id: 1,
+        //     name: "Alexandre Ramos",
+        //     email: email,
+        //     avatarURL: "https://github.com/alexdefaro.png"
+        // }
 
         try {
-            const response = await axiosService.get(`https://api.github.com/users/${username}`);
+            const response = await axiosService.post("/login", { email, password });
+
             return {
+                id: response.data.id,
                 name: response.data.name,
                 email: response.data.email,
-                avatarURL: response.data.avatar_url
+                avatarURL: response.data.avatarURL
             }
         } catch (error) {
             return null;
         }
-    } 
+    }
 
     async function authenticateUser(email, password) {
-        const gitHubUserInformation = await getGitHubUserInformation(email.substring(0, email.indexOf("@")));
+        const userInformation = await getUserInformation(email, password);
 
-        let userName = "Alexandre Ramos";
-        let avatarURL = "https://github.com/alexdefaro.png";
-
-        if (!gitHubUserInformation) {
-            return false; 
+        if (!userInformation) {
+            return null;
         }
 
         const authenticationData = {
             jwtToken: uuidv4(),
             userInformation: {
-                id: 1,
-                name: gitHubUserInformation.name,
-                email: gitHubUserInformation.email,
-                avatarURL : gitHubUserInformation.avatarURL,
-                isAuthenticated: false
+                id: userInformation.id,
+                name: userInformation.name,
+                email: userInformation.email,
+                avatarURL: userInformation.avatarURL,
+                isAuthenticated: true
             }
         };
-
-        authenticationData.userInformation.isAuthenticated = true;
 
         return authenticationData;
     }

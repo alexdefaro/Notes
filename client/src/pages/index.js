@@ -7,9 +7,9 @@ function Home() {
     const { userInformation } = useAuthenticationContext();
 
     useEffect(() => {
-        axiosService.get("/people/?format=json").then(function (response) {
-            // console.log(response.data.results);
-          });    
+        // axiosService.get("/people/?format=json").then(function (response) {
+        //     // console.log(response.data.results);
+        //   });    
     }, []); 
 
     return (

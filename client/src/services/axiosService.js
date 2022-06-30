@@ -1,7 +1,7 @@
 import axios from "axios";
 import { parseCookies } from 'nookies'
 
-const API_URL = "https://swapi.dev/api"
+const API_URL = "http://localhost:3001"
 
 export const axiosService = axios.create({
     baseURL: API_URL
