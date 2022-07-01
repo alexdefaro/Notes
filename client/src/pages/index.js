@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { axiosService, configureAxiosService } from '../services/axiosService'
 import { useAuthenticationContext } from '../contexts/AuthenticationContext'
 import { parseCookies } from 'nookies'
-import Image from 'next/image';
 
 function Home() {
     const { userInformation } = useAuthenticationContext();
@@ -48,7 +47,7 @@ function Home() {
 
                                 <div tabIndex="0" aria-label={`card ${index}`} className="focus:outline-none w-4/5 mb-7 bg-white dark:bg-gray-800 p-6 shadow rounded">
                                     <div className="flex items-center border-b border-gray-200 dark:border-gray-700  pb-6">
-                                        <Image src={user.avatarURL} alt="coin avatar" className="w-12 h-12 rounded-full" />
+                                        <img src={user.avatarURL} alt="coin avatar" className="w-12 h-12 rounded-full" />
                                         <div className="flex items-start justify-between w-full">
                                             <div className="pl-3 w-full">
                                                 <p tabIndex="0" className="focus:outline-none text-xl font-medium leading-5 text-gray-800 dark:text-white ">{user.name}</p>
