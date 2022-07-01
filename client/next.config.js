@@ -1,9 +1,11 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  env: {
-    customKey: 'my-value',
-  },
+    reactStrictMode: true,
+    images: {
+        domains: [
+        ],
+    },
+    env: {
+    },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig 

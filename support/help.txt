@@ -1,6 +1,22 @@
 # Project Information 
 	URL: https://notes-six-jade.vercel.app/
 
+
+------------------------------------------------------------------------------------
+- View 
+	https://www.youtube.com/watch?v=mbsmsi7l3r4 // JWT AUTH
+	https://www.youtube.com/watch?v=w8n7Soz7khw // Cookies 
+	https://dev.to/franciscomendes10866/using-cookies-with-jwt-in-node-js-8fn // JWT
+
+
+------------------------------------------------------------------------------------
+- Json Web Token
+	https://www.npmjs.com/package/jsonwebtoken
+
+	- create SECRET (on console)
+		node 
+		require('crypto').randomBytes(64).toString('hex')
+
 ------------------------------------------------------------------------------------
 - Express
 	https://expressjs.com/

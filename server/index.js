@@ -1,30 +1,43 @@
+require('dotenv').config()
+
 const express = require("express");
 const uuid = require('uuid');
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
 
 const users = require("./routes/users");
 
-const app = express();
+const server = express();
 const port = 3001;
 
-app.use(cors());
-app.use(express.json());
+// Server configurations 
+const allowedCORSOrigins = [
+    "http://localhost:3000", "https://localhost:3000",
+]
 
-app.use("/users", users);
+server.use(
+    cors({
+        credentials: true,
+        origin: allowedCORSOrigins
+    })
+);
 
-app.listen(port, () => {
+server.use(express.json());
+
+// External Routes 
+server.use("/users", users);
+
+// Start server 
+server.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
 
-app.get("/", (request, response) => {
+// Internal Routes 
+server.get("/", (request, response) => {
     response.send("Listening...");
 })
 
-app.post('/login', (request, response) => {
-
-    console.log('NODE')
-
-    
+server.post('/login', (request, response) => {
     const email = request.body.email;
     const registeredUsers = [
         { id: 1, name: "Alexandre Ramos", email: "alexdefaro@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/8345376?v=4" },
@@ -35,11 +48,11 @@ app.post('/login', (request, response) => {
     const userIndex = registeredUsers.findIndex((registeredUser) => registeredUser.email === email);
 
     if (userIndex === -1) {
-        response.status(400).end();
+        response.status(404).end();
     }
 
     const authenticationData = {
-        jwtToken: uuid.v4(),
+        jwtToken: "",
         userInformation: {
             id: registeredUsers[userIndex].id,
             name: registeredUsers[userIndex].name,
@@ -49,6 +62,10 @@ app.post('/login', (request, response) => {
         }
     }
 
-    response.json(authenticationData);
+    authenticationData.jwtToken = jwt.sign(authenticationData, process.env.ACCESS_TOKEN_SECRET);
+
+    return response
+        .status(200)
+        .json(authenticationData);
 })
 
