@@ -14,9 +14,6 @@ function validateAuthenticationToken(request, response, next) {
         }
 
         request.userInformation = authenticationData.userInformation;
-
-        console.log("authenticationData", request.userInformation );
-
         next();
     });
 }

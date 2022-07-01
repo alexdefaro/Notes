@@ -2,24 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const validateAuthenticationToken = require("../authentication");
+const fakeData = require('../fakedata');
 
 router.get("/", validateAuthenticationToken, (request, response) => {
-    const registeredUsers = [
-        { id: 1, name: "Alexandre Ramos", email: "alexdefaro@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/8345376?v=4" },
-        { id: 2, name: "Alvaro Filho", email: "alvaroalberto@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/367136?v=4" },
-        { id: 3, name: "Marcio Luiz", email: "marcio.luizsf@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/592777?v=4" }
-    ];
+    const registeredUsers = fakeData.registeredUsers;
 
-    response.send(registeredUsers);
+    response.json(registeredUsers);
 })
 
 router.get("/:email", validateAuthenticationToken, (request, response) => {
-
-    const registeredUsers = [
-        { id: 1, name: "Alexandre Ramos", email: "alexdefaro@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/8345376?v=4" },
-        { id: 2, name: "Alvaro Filho", email: "alvaroalberto@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/367136?v=4" },
-        { id: 3, name: "Marcio Luiz", email: "marcio.luizsf@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/592777?v=4" }
-    ];
+    const registeredUsers = fakeData.registeredUsers;
 
     const email = request.params.email ?? "";
     const userIndex = registeredUsers.findIndex((registeredUser) => registeredUser.email === email);
@@ -28,7 +20,7 @@ router.get("/:email", validateAuthenticationToken, (request, response) => {
         response.status(404).end();
     }
 
-    response.send(registeredUsers[userIndex]);
+    response.json(registeredUsers[userIndex]);
 })
 
 router.post('/', (request, response) => {

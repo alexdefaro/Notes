@@ -7,6 +7,9 @@ const jwt = require('jsonwebtoken');
 
 const users = require("./routes/users");
 
+const fakeData = require('./fakedata');
+
+
 const server = express();
 const port = 3001;
 
@@ -39,11 +42,7 @@ server.get("/", (request, response) => {
 
 server.post('/login', (request, response) => {
     const email = request.body.email;
-    const registeredUsers = [
-        { id: 1, name: "Alexandre Ramos", email: "alexdefaro@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/8345376?v=4" },
-        { id: 2, name: "Alvaro Filho", email: "alvaroalberto@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/367136?v=4" },
-        { id: 3, name: "Marcio Luiz", email: "marcio.luizsf@gmail.com", avatarURL: "https://avatars.githubusercontent.com/u/592777?v=4" }
-    ];
+    const registeredUsers = fakeData.registeredUsers;
 
     const userIndex = registeredUsers.findIndex((registeredUser) => registeredUser.email === email);
 
