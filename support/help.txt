@@ -10,6 +10,27 @@
 
 
 ------------------------------------------------------------------------------------
+- GraphQL 
+	https://www.npmjs.com/package/apollo-server-express
+	https://www.apollographql.com/docs/apollo-server/integrations/middleware/#apollo-server-express
+
+	1) Installing NODE
+		npm install apollo-server-core
+		npm install apollo-server-express 
+
+------------------------------------------------------------------------------------
+- GraphQL 
+	https://graphql.org/
+
+	1) Installing NODE
+		https://www.npmjs.com/package/graphql
+			npm install graphql --save
+		https://www.npmjs.com/package/express-graphql
+			npm install express-graphql
+
+
+
+------------------------------------------------------------------------------------
 - Json Web Token
 	https://www.npmjs.com/package/jsonwebtoken
 

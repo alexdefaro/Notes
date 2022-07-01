@@ -30,7 +30,7 @@ function Home() {
 
     return (
         <div className="min-h-full ">
-            <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 bg-white shadow">
+            <div className="mx-auto py-6 sm:px-6 lg:px-8 bg-white shadow">
                 <button onClick={callBackendToAll}
                     className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                     Call Backend to get all users data
