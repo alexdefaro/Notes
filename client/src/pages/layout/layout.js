@@ -3,6 +3,7 @@ import Router from "next/router";
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useAuthenticationContext } from '../../contexts/AuthenticationContext'
+import Image from "next/image";
 
 
 function Layout({ children }) {
@@ -20,7 +21,7 @@ function Layout({ children }) {
                     <div className="flex items-center justify-start h-16 ml-6">
                         <Menu as="div" className="relative">
                             <Menu.Button className="pt-1 max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                                <img className="h-8 w-8 rounded-full" src={userInformation.avatarURL} alt="" />
+                                <Image className="h-8 w-8 rounded-full" src={userInformation.avatarURL} alt="" />
                             </Menu.Button>
                             <Menu.Items className="origin-top-left absolute left-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <Menu.Item>
