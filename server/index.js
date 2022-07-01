@@ -9,8 +9,6 @@ const { graphqlHTTP } = require('express-graphql');
 const uuid = require('uuid');
 const jwt = require('jsonwebtoken');
 
-const graphQLSchema = require("./graphQL/graphSQLSchema");
-
 const users = require("./routes/users");
 const fakeData = require('./fakedata');
 
@@ -20,19 +18,16 @@ const port = 3001;
 
 // Server configurations 
 const allowedCORSOrigins = [
-    "http://localhost:3000", "https://localhost:3000",
+    "http://localhost:3000", 
+    "https://localhost:3000",
+    "https://notes-client-sigma.vercel.app/"
 ]
  
 server.use(
-    // '/graphql',
     cors({
         credentials: true,
         origin: allowedCORSOrigins
-    }),
-    // graphqlHTTP({
-    //     schema: graphQLSchema,
-    //     graphiql: true,
-    // })
+    })
 );
 
 server.use(express.json());
