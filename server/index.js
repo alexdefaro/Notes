@@ -20,7 +20,7 @@ const port = 3001;
 const allowedCORSOrigins = [
     "http://localhost:3000", 
     "https://localhost:3000",
-    "https://notes-client-sigma.vercel.app/"
+    "https://notes-client-sigma.vercel.app"
 ]
  
 server.use(
