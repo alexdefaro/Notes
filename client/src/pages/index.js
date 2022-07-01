@@ -30,8 +30,7 @@ function Home() {
                     className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                     Call Backend to get all users data
                 </button>
-
-
+                
                 <button onClick={callBackend}
                     className=" ml-4 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                     Call Backend to get you data

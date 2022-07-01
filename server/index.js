@@ -3,9 +3,6 @@ require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 
-const graphql = require("graphql");
-const { graphqlHTTP } = require('express-graphql');
-
 const uuid = require('uuid');
 const jwt = require('jsonwebtoken');
 
