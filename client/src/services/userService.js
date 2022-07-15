@@ -1,10 +1,34 @@
-import { axiosService } from './axiosService';
+import { axiosService, configureAxiosService } from './axiosService';
 
 function userService() {
+    const localAxiosService = configureAxiosService();
 
     function isEmptyObject(obj) {
         const isObjectEmpty = obj == null || !obj || obj == 'null' || obj == 'undefined' || Object.keys(obj).length === 0;
         return isObjectEmpty;
+    }
+
+    async function getUserByEmail(userEmail) {
+        const response = await localAxiosService.get(`/users/${userEmail}`)
+        return response;
+    }
+
+    async function getAllUsers() {
+        const response = await localAxiosService.get(`/users`)
+        return response;
+    }
+
+    async function getUserRepositories(userName) {
+        delete localAxiosService.defaults.headers.common['Authorization'];
+        const response = await localAxiosService({
+            url: `/users/${userName}/repos`,
+            withCredentials: false,
+            baseURL: "https://api.github.com/",
+            headers: {
+            }
+        });
+        
+        return response;
     }
 
     async function getUserAuthenticationData(email, password) {
@@ -23,7 +47,7 @@ function userService() {
             }
 
             return authenticationData;
-        } 
+        }
         catch (error) {
             return null;
         }
@@ -41,7 +65,10 @@ function userService() {
     }
 
     return {
-        authenticateUser
+        authenticateUser,
+        getUserByEmail,
+        getAllUsers,
+        getUserRepositories
     }
 }
 

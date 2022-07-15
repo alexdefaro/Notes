@@ -1,6 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import userService from '../services/userService';
 
 function UserData({ user }) {
+    const [repositories, setRepositories] = useState([]);
+
+    const { getUserRepositories } = userService();
+
+    async function loadRepositories(userName) {
+        const userRepositories = await getUserRepositories(userName);
+        console.log(userRepositories.data);
+
+        setRepositories(userRepositories.data);
+    }
+
     return (
         <div tabIndex="0" aria-label={`card ${user.id}`} className="focus:outline-none w-4/5 mb-7 bg-white dark:bg-gray-800 p-6 shadow rounded">
             <div className="flex items-center border-b border-gray-200 dark:border-gray-700  pb-6">
@@ -16,6 +28,23 @@ function UserData({ user }) {
                 <p tabIndex="0" className="focus:outline-none text-sm leading-5 py-4 text-gray-600 dark:text-gray-200 ">
                     {user.about}
                 </p>
+                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow" onClick={() => loadRepositories(user.userName)}>Load repositories</button>
+
+                {
+                    (repositories.length > 0) &&
+                    <div className="mt-3">
+                        <ul class="bg-white border border-gray-200 w-full text-gray-900">
+                            {repositories.map(function (repository, index) {
+                                return (
+                                    <div key={index} className="">
+                                        <li class="px-6 py-2 border-b border-gray-200 w-full rounded-t-lg">{repository.name}</li>
+                                    </div>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                }
+
             </div>
         </div>
     )

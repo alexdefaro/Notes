@@ -12,7 +12,7 @@ export function configureAxiosService(context) {
 
     if (token) {
         const parsedToken = JSON.parse(token);
-        axiosAPI.defaults.headers.common['Authorization'] = `Bearer ${parsedToken.jwtToken}`;
+        axiosAPI.defaults.headers.common['Authorization'] = `Bearer ${parsedToken.jwtToken}`;        
     }
 
     axiosAPI.interceptors.request.use(function (config) {

@@ -4,23 +4,21 @@ import { axiosService, configureAxiosService } from '../services/axiosService'
 import { useAuthenticationContext } from '../contexts/AuthenticationContext'
 import { parseCookies } from 'nookies'
 import UsersData from '../componenets/UsersData';
+import userService from '../services/userService';
 
 function Home() {
     const { userInformation } = useAuthenticationContext();
+    const { getUserByEmail, getAllUsers } = userService();
 
     const [users, setUsers] = useState([]);
 
     async function callBackend() {
-        const localAxiosService = configureAxiosService();
-        const response = await localAxiosService.get(`/users/${userInformation.email}`)
-
+        const response = await getUserByEmail(userInformation.email); 
         setUsers([response.data]);
     }
 
     async function callBackendToAll() {
-        const localAxiosService = configureAxiosService();
-        const response = await localAxiosService.get(`/users`)
-
+        const response = await getAllUsers(); 
         setUsers(response.data);
     }
 
