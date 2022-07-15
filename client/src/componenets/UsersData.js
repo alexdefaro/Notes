@@ -8,9 +8,7 @@ function UserData({ user }) {
 
     async function loadRepositories(userName) {
         const userRepositories = await getUserRepositories(userName);
-        console.log(userRepositories.data);
-
-        setRepositories(userRepositories.data);
+        setRepositories(userRepositories);
     }
 
     return (
@@ -33,11 +31,11 @@ function UserData({ user }) {
                 {
                     (repositories.length > 0) &&
                     <div className="mt-3">
-                        <ul class="bg-white border border-gray-200 w-full text-gray-900">
+                        <ul className="bg-white border border-gray-200 w-full text-gray-900">
                             {repositories.map(function (repository, index) {
                                 return (
                                     <div key={index} className="">
-                                        <li class="px-6 py-2 border-b border-gray-200 w-full rounded-t-lg">{repository.name}</li>
+                                        <li className="px-6 py-2 border-b border-gray-200 w-full rounded-t-lg">{repository.name}</li>
                                     </div>
                                 )
                             })}
