@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const validateAuthenticationToken = require("../authentication");
+const validateAuthenticationToken = require("../supportFunctions");
 const fakeData = require('../fakedata');
 
 router.get("/", validateAuthenticationToken, (request, response) => {

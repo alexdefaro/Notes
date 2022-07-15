@@ -1,9 +1,13 @@
 import Router from "next/router";
+import { io } from "socket.io-client";
 
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useAuthenticationContext } from '../../contexts/AuthenticationContext'
+import Head from "next/head";
+import { useEffect } from "react";
 
+// const socketIO = io("http://localhost:3001", { transports: ['websocket'], upgrade: false });
 
 function Layout({ children }) {
     const { userInformation, handleSignOut } = useAuthenticationContext();
@@ -12,6 +16,35 @@ function Layout({ children }) {
         handleSignOut();
         Router.push("/login");
     }
+
+    // useEffect(() => {
+    //     console.log("Component mounted");
+
+    //     socketIO.on("connect", () => {
+    //         console.log("Connected to Server");
+    //     });
+
+    //     socketIO.on("disconnect", () => {
+    //         console.log("Disconnected from Server");
+    //     });
+
+    //     socketIO.on("hello", (arg) => {
+    //         console.log(arg);
+    //     });
+
+    //     socketIO.connect();
+
+    //     return () => {
+    //         console.log("Component unmounted");
+
+    //         socketIO.disconnect();
+
+    //         socketIO.off("connect");
+    //         socketIO.off("disconnect");
+    //         socketIO.off("hello");
+    //     }
+    // }, []);
+
 
     return (
         <>

@@ -10,6 +10,13 @@
 
 
 ------------------------------------------------------------------------------------
+- Socket.IO 
+	https://socket.io/
+
+	1) Installing NODE
+		npm install socket.io
+
+------------------------------------------------------------------------------------
 - GraphQL 
 	https://www.npmjs.com/package/apollo-server-express
 	https://www.apollographql.com/docs/apollo-server/integrations/middleware/#apollo-server-express
@@ -51,7 +58,6 @@
 		npm install cors 
 		npm install nodemon
 
-
 ------------------------------------------------------------------------------------
 - React Hook Form 
 	https://react-hook-form.com/
@@ -59,6 +65,12 @@
 	1) Installing
 		npm install react-hook-form
 
+	YUP
+	https://www.npmjs.com/package/yup
+
+	1) Installing
+		npm install @hookform/resolvers yup
+		
 ------------------------------------------------------------------------------------
 - UUID
 	https://www.npmjs.com/package/uuid
