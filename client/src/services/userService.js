@@ -19,15 +19,6 @@ function userService() {
     }
 
     async function getUserRepositories(userName) {
-        //delete localAxiosService.defaults.headers.common['Authorization'];
-        //const response = await localAxiosService({
-        //    url: `/users/${userName}/repos`,
-        //    withCredentials: false,
-        //    baseURL: "https://api.github.com/",
-        //    headers: {
-        //    }
-        //});
-
         const response = await localAxiosService({
             url: `/api/repositories?username=${userName}`,
             baseURL: ""

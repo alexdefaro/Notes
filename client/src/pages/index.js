@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { axiosService, configureAxiosService } from '../services/axiosService'
 import { useAuthenticationContext } from '../contexts/AuthenticationContext'
 import { parseCookies } from 'nookies'
-import UsersData from '../componenets/UsersData';
+import UsersData from '../components/UsersData';
 import userService from '../services/userService';
 
 function Home() {
