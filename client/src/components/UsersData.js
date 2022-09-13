@@ -59,7 +59,7 @@ function UserData({ user }) {
 
 function UsersData({ users }) {
     return (
-        (users.length > 0) &&
+        (users?.length > 0) &&
         <div aria-label="group of cards" tabIndex="0" className="focus:outline-none py-8 w-full">
             {users.map(function (user, index) {
                 return (

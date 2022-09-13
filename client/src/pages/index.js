@@ -6,21 +6,28 @@ import { parseCookies } from 'nookies'
 import UsersData from '../components/UsersData';
 import userService from '../services/userService';
 
+import { useQuery } from '@tanstack/react-query'
+
 function Home() {
+    const { data, isLoading, isError } = useQuery(['allUsersData'], async () => {
+        const response = await getAllUsers();
+        return response.data;
+    });
+
     const { userInformation } = useAuthenticationContext();
     const { getUserByEmail, getAllUsers } = userService();
 
     const [users, setUsers] = useState([]);
 
     async function callBackend() {
-        const response = await getUserByEmail(userInformation.email); 
+        const response = await getUserByEmail(userInformation.email);
         setUsers([response.data]);
     }
 
     async function callBackendToAll() {
-        const response = await getAllUsers(); 
+        const response = await getAllUsers();
         setUsers(response.data);
-    }
+    } 
 
     return (
         <div className="min-h-full ">
@@ -35,7 +42,7 @@ function Home() {
                     Call Backend to get you data
                 </button>
             </div>
-            <UsersData users={users} />
+            <UsersData users={users.length > 0 ? users : data} />
         </div>
     )
 }
