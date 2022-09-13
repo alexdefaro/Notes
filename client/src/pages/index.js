@@ -9,15 +9,15 @@ import userService from '../services/userService';
 import { useQuery } from '@tanstack/react-query'
 
 function Home() {
-    const { data, isLoading, isError } = useQuery(['allUsersData'], async () => {
-        const response = await getAllUsers();
-        return response.data;
-    });
-
     const { userInformation } = useAuthenticationContext();
     const { getUserByEmail, getAllUsers } = userService();
 
     const [users, setUsers] = useState([]);
+
+    const { data, isLoading, isError } = useQuery(['allUsersData'], async () => {
+        const response = await getAllUsers();
+        return response.data;
+    });
 
     async function callBackend() {
         const response = await getUserByEmail(userInformation.email);
@@ -27,7 +27,7 @@ function Home() {
     async function callBackendToAll() {
         const response = await getAllUsers();
         setUsers(response.data);
-    } 
+    }
 
     return (
         <div className="min-h-full ">
@@ -59,12 +59,12 @@ export async function getServerSideProps(context) {
         }
     }
 
-    // const localAxiosService = configureAxiosService(context); 
-    // const users =  await localAxiosService.get("/users")
+    const localAxiosService = configureAxiosService(context);
+    const users = await localAxiosService.get("/users")
 
     return {
         props: {
-            // users : users.data
+            data: users.data
         }
     }
 }
