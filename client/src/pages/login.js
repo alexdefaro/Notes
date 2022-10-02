@@ -77,6 +77,7 @@ function Login() {
                     </div>
 
                     {errors.password?.message && <div className="text-red-500 text-sm">{errors.password?.message}</div>}
+                    
                     <div className={`p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 ${!loginFailed ? "invisible" : "visible "}`} role="alert">
                         <span className="font-medium">Sign in failed!</span> Please review your credentials.
                     </div>

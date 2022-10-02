@@ -161,10 +161,12 @@
 
 			],
 		}	
+
 	3) Add the Tailwind directives to your CSS
 		@tailwind base;
 		@tailwind components;
 		@tailwind utilities;
+		
 	4) Other components to install
 		npm install @tailwindcss/forms
 		npm install @headlessui/react 

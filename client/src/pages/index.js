@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { useEffect, useState } from 'react'
 import { axiosService, configureAxiosService } from '../services/axiosService'
 import { useAuthenticationContext } from '../contexts/AuthenticationContext'
@@ -8,16 +7,16 @@ import userService from '../services/userService';
 
 import { useQuery } from '@tanstack/react-query'
 
-function Home() {
+function Home({data}) {
     const { userInformation } = useAuthenticationContext();
     const { getUserByEmail, getAllUsers } = userService();
 
     const [users, setUsers] = useState([]);
 
-    const { data, isLoading, isError } = useQuery(['allUsersData'], async () => {
-        const response = await getAllUsers();
-        return response.data;
-    });
+        // const { data, isLoading, isError } = useQuery(['allUsersData'], async () => {
+        //     const response = await getAllUsers();
+        //     return response.data;
+        // });
 
     async function callBackend() {
         const response = await getUserByEmail(userInformation.email);
